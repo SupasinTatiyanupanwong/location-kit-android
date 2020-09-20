@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-package me.tatiyanupanwong.supasin.android.libraries.kits.location;
+package me.tatiyanupanwong.supasin.android.libraries.kits.location.internal;
 
+import android.app.Activity;
+import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.FusedLocationProviderClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationRequest;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -25,4 +32,11 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public interface LocationFactory {
+
+    @NonNull FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Context context);
+
+    @NonNull FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Activity activity);
+
+    @NonNull LocationRequest newLocationRequest();
+
 }

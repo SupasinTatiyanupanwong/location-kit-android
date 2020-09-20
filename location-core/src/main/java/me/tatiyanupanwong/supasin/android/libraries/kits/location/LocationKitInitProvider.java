@@ -25,12 +25,16 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY;
 
 /**
  * Initializes Location Kit on application startup.
  *
  * @since 1.0.0
  */
+@RestrictTo(LIBRARY)
 public final class LocationKitInitProvider extends ContentProvider {
 
     @Override

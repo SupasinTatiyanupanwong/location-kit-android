@@ -16,6 +16,7 @@
 
 package me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -28,15 +29,36 @@ import com.huawei.hms.api.HuaweiApiAvailability;
 import java.util.Arrays;
 import java.util.List;
 
-import me.tatiyanupanwong.supasin.android.libraries.kits.location.LocationFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.LocationFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.model.HuaweiFusedLocationProviderClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.model.HuaweiLocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.FusedLocationProviderClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationRequest;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
 
 @RestrictTo(LIBRARY)
 @SuppressWarnings("unused")
-public class HuaweiLocationFactory implements LocationFactory {
+public final class HuaweiLocationFactory implements LocationFactory {
 
     private HuaweiLocationFactory() {}
+
+    @Override
+    public @NonNull FusedLocationProviderClient getFusedLocationProviderClient(
+            @NonNull Context context) {
+        return new HuaweiFusedLocationProviderClient(context);
+    }
+
+    @Override
+    public @NonNull FusedLocationProviderClient getFusedLocationProviderClient(
+            @NonNull Activity activity) {
+        return new HuaweiFusedLocationProviderClient(activity);
+    }
+
+    @Override
+    public @NonNull LocationRequest newLocationRequest() {
+        return new HuaweiLocationRequest();
+    }
 
 
     public static @Nullable LocationFactory buildIfSupported(@NonNull Context context) {

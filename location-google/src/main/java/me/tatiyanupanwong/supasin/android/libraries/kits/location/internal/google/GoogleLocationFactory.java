@@ -16,6 +16,7 @@
 
 package me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -28,15 +29,36 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import java.util.Arrays;
 import java.util.List;
 
-import me.tatiyanupanwong.supasin.android.libraries.kits.location.LocationFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.LocationFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.model.GoogleFusedLocationProviderClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.model.GoogleLocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.FusedLocationProviderClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationRequest;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
 
 @RestrictTo(LIBRARY)
 @SuppressWarnings("unused")
-public class GoogleLocationFactory implements LocationFactory {
+public final class GoogleLocationFactory implements LocationFactory {
 
     private GoogleLocationFactory() {}
+
+    @Override
+    public @NonNull FusedLocationProviderClient getFusedLocationProviderClient(
+            @NonNull Context context) {
+        return new GoogleFusedLocationProviderClient(context);
+    }
+
+    @Override
+    public @NonNull FusedLocationProviderClient getFusedLocationProviderClient(
+            @NonNull Activity activity) {
+        return new GoogleFusedLocationProviderClient(activity);
+    }
+
+    @Override
+    public @NonNull LocationRequest newLocationRequest() {
+        return new GoogleLocationRequest();
+    }
 
 
     public static @Nullable LocationFactory buildIfSupported(@NonNull Context context) {

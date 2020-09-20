@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
+ext {
+    POM_ARTIFACT_ID = 'location-core'
 
-android {
-    compileSdkVersion 29
-
-    defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
-    }
+    POM_NAME = 'Location Kit (Core)'
+    POM_DESCRIPTION = 'Encapsulates Location APIs for Android.'
+    POM_VERSION = '1.0.0'
 }
 
-dependencies {
-    api project(':location-core')
-
-    implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-google:1.0.0'
-
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-}
-
-apply from: 'publish.gradle'
+apply from: rootProject.file("gradle/install.gradle")
+apply from: rootProject.file("gradle/bintray.gradle")

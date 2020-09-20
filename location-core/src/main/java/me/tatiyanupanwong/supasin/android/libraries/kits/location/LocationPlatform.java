@@ -21,6 +21,10 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Objects;
+
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.LocationFactory;
+
 /**
  * @since 1.0.0
  */
@@ -28,12 +32,12 @@ abstract class LocationPlatform {
 
     private static LocationPlatform sPlatform;
 
-    static synchronized LocationPlatform get() {
-        return sPlatform;
-    }
-
     static synchronized void init(@NonNull Context context) {
         sPlatform = findPlatform(context);
+    }
+
+    static synchronized LocationPlatform get() {
+        return sPlatform;
     }
 
 
@@ -71,10 +75,12 @@ abstract class LocationPlatform {
 
         @Nullable static GoogleLocationPlatform buildIfSupported(@NonNull Context context) {
             try {
-                sFactory = (LocationFactory) Class
-                        .forName(LIBRARY_PACKAGE_NAME + ".GoogleLocationFactory")
-                        .getMethod("buildIfSupported", Context.class)
-                        .invoke(null, context);
+                sFactory = Objects.requireNonNull(
+                        (LocationFactory) Class
+                                .forName(LIBRARY_PACKAGE_NAME + ".GoogleLocationFactory")
+                                .getMethod("buildIfSupported", Context.class)
+                                .invoke(null, context)
+                );
 
                 return new GoogleLocationPlatform();
             } catch (Exception ignored) {
@@ -97,10 +103,12 @@ abstract class LocationPlatform {
 
         @Nullable static HuaweiLocationPlatform buildIfSupported(@NonNull Context context) {
             try {
-                sFactory = (LocationFactory) Class
-                        .forName(LIBRARY_PACKAGE_NAME + ".HuaweiLocationFactory")
-                        .getMethod("buildIfSupported", Context.class)
-                        .invoke(null, context);
+                sFactory = Objects.requireNonNull(
+                        (LocationFactory) Class
+                                .forName(LIBRARY_PACKAGE_NAME + ".HuaweiLocationFactory")
+                                .getMethod("buildIfSupported", Context.class)
+                                .invoke(null, context)
+                );
 
                 return new HuaweiLocationPlatform();
             } catch (Exception ignored) {

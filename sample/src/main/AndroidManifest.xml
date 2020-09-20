@@ -20,10 +20,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.tatiyanupanwong.supasin.android.samples.kits.location">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
-        android:label="Location Kit Demo"
+        android:label="Location Kit Sample"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="AllowBackup,MissingApplicationIcon">
 
         <activity android:name=".MainActivity">
