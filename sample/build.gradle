@@ -14,25 +14,13 @@
  * limitations under the License.
  */
 
-buildscript {
-    repositories {
-        // Huawei services configuration
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
-
-    dependencies {
-        // Huawei services configuration
-        classpath 'com.huawei.agconnect:agcp:1.3.0.300'
-    }
-}
-
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
-        applicationId "me.tatiyanupanwong.supasin.android.samples.kits.location"
+        applicationId 'me.tatiyanupanwong.supasin.android.samples.kits.location'
 
         minSdkVersion 19
         targetSdkVersion 30
@@ -65,5 +53,3 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.0.0'
 }
-
-apply plugin: 'com.huawei.agconnect'

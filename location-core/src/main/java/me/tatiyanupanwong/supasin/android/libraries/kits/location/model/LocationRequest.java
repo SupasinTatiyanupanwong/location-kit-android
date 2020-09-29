@@ -90,7 +90,7 @@ public interface LocationRequest {
      * <p>
      * The priority of the request is a strong hint to the {@link FusedLocationProviderClient} for
      * which location sources to use. For example, {@link #PRIORITY_HIGH_ACCURACY} is more likely
-     * to use GPS, and PRIORITY_BALANCED_POWER_ACCURACY is more likely to use WIFI & Cell tower
+     * to use GPS, and PRIORITY_BALANCED_POWER_ACCURACY is more likely to use WIFI &amp; Cell tower
      * positioning, but it also depends on many other factors (such as which sources are available)
      * and is implementation dependent.
      * <p>
