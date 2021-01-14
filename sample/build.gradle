@@ -32,15 +32,22 @@ android {
         huawei {
             applicationIdSuffix '.huawei'
         }
+        lost {
+            applicationIdSuffix '.lost'
+        }
     }
 }
 
 configurations {
     google
     huawei
+    lost
 
     googleImplementation.extendsFrom(google)
     googleCompileOnly.extendsFrom(huawei)
+
+    lostImplementation.extendsFrom(lost)
+    lostCompileOnly.extendsFrom(google)
 
     huaweiImplementation.extendsFrom(huawei)
     huaweiCompileOnly.extendsFrom(google)
@@ -49,6 +56,7 @@ configurations {
 dependencies {
     google project(':location-google')
     huawei project(':location-huawei')
+    lost project(':location-lost')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.0.0'
