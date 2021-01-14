@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Supasin Tatiyanupanwong
+ * Copyright 2020 Tavorlabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,4 +14,15 @@
  * limitations under the License.
  */
 
-include ':sample', ':location-core', ':location-google', ':location-huawei', ':location-lost'
+tasks.withType(Javadoc).all { enabled = false }
+
+ext {
+    POM_ARTIFACT_ID = 'location-lost'
+
+    POM_NAME = 'Location Kit (Lost)'
+    POM_DESCRIPTION = 'Provides Lost Location Services integration to Location Kit.'
+    POM_VERSION = '1.0.0'
+}
+
+apply from: rootProject.file("gradle/install.gradle")
+apply from: rootProject.file("gradle/bintray.gradle")
