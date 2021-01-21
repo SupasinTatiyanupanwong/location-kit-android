@@ -30,7 +30,7 @@ android {
 dependencies {
     api project(':location-core')
 
-    implementation 'com.tavorlabs.android.libraries.kits.base:base-lost:1.0.1'
+    implementation 'com.tavorlabs.android.libraries.kits.base:base-lost:1.0.2'
 
     //Just using the Google Services Task dependency,
     //in order to try to keep this simple as possible

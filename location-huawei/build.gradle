@@ -36,7 +36,7 @@ android {
 dependencies {
     api project(':location-core')
 
-    implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-huawei:1.0.0'
+    implementation 'com.tavorlabs.android.libraries.kits.base:base-huawei:1.0.1'
 
     implementation 'com.huawei.hms:location:5.0.0.301'
 }
