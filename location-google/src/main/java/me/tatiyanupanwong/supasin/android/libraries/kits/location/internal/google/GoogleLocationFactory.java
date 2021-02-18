@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * EDITED BY Tavorlabs on 2021
  */
 
 package me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google;
@@ -31,9 +33,15 @@ import java.util.List;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.LocationFactory;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.model.GoogleFusedLocationProviderClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.exception.GoogleLocationApiException;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.exception.GoogleLocationApiResolvableException;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.model.GoogleLocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.model.GoogleLocationSettingsRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.model.GoogleSettingsClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.FusedLocationProviderClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsRequest;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
 
@@ -56,10 +64,37 @@ public final class GoogleLocationFactory implements LocationFactory {
     }
 
     @Override
+    public @NonNull LocationSettingsClient getLocationSettingsClient(
+            @NonNull Context context) {
+        return new GoogleSettingsClient(context);
+    }
+
+    @Override
+    public @NonNull LocationSettingsClient getLocationSettingsClient(
+            @NonNull Activity activity) {
+        return new GoogleSettingsClient(activity);
+    }
+
+    @Override
     public @NonNull LocationRequest newLocationRequest() {
         return new GoogleLocationRequest();
     }
 
+    @Override
+    public @NonNull LocationSettingsRequest newLocationSettingsRequest() {
+        return new GoogleLocationSettingsRequest();
+    }
+
+    @Override
+    public @NonNull Exception getApiException(@NonNull Exception e) {
+        if (e instanceof com.google.android.gms.common.api.ResolvableApiException) {
+            return (new GoogleLocationApiResolvableException((com.google.android.gms.common.api.ResolvableApiException) e));
+        } else if (e instanceof com.google.android.gms.common.api.ApiException) {
+            return (new GoogleLocationApiException((com.google.android.gms.common.api.ApiException) e));
+        } else {
+            return e;
+        }
+    }
 
     public static @Nullable LocationFactory buildIfSupported(@NonNull Context context) {
         final List<Integer> unavailableResults = Arrays.asList(

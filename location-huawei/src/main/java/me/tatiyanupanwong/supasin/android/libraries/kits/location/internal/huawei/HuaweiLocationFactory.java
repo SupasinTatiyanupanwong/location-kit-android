@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * EDITED BY Tavorlabs on 2021
  */
 
 package me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei;
@@ -31,9 +33,15 @@ import java.util.List;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.LocationFactory;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.model.HuaweiFusedLocationProviderClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.exception.HuaweiLocationApiException;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.exception.HuaweiLocationApiResolvableException;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.model.HuaweiLocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.model.HuaweiLocationSettingsRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.model.HuaweiSettingsClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.FusedLocationProviderClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsRequest;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
 
@@ -53,6 +61,34 @@ public final class HuaweiLocationFactory implements LocationFactory {
     public @NonNull FusedLocationProviderClient getFusedLocationProviderClient(
             @NonNull Activity activity) {
         return new HuaweiFusedLocationProviderClient(activity);
+    }
+
+    @Override
+    public @NonNull LocationSettingsClient getLocationSettingsClient(
+            @NonNull Context context) {
+        return new HuaweiSettingsClient(context);
+    }
+
+    @Override
+    public @NonNull LocationSettingsClient getLocationSettingsClient(
+            @NonNull Activity activity) {
+        return new HuaweiSettingsClient(activity);
+    }
+
+    @Override
+    public @NonNull LocationSettingsRequest newLocationSettingsRequest() {
+        return new HuaweiLocationSettingsRequest();
+    }
+
+    @Override
+    public @NonNull Exception getApiException(@NonNull Exception e) {
+        if (e instanceof com.huawei.hms.common.ResolvableApiException) {
+            return (new HuaweiLocationApiResolvableException((com.huawei.hms.common.ResolvableApiException) e));
+        } else if (e instanceof com.huawei.hms.common.ApiException) {
+            return (new HuaweiLocationApiException((com.huawei.hms.common.ApiException) e));
+        } else {
+            return e;
+        }
     }
 
     @Override
