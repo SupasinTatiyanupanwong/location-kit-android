@@ -56,7 +56,7 @@ public final class LostLocationFactory implements LocationFactory {
 
 
     public static @Nullable LocationFactory buildIfSupported(@NonNull Context context) {
-        /*Is seems that this does not apply on Lost,
+        /*It seems that this does not apply on Lost,
         because it just depends on the Android Location Framework...
         So, this just returns the Factory
          */
