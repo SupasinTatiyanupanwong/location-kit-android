@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("MissingPermission")
     private void startLocationUpdates() {
         mFusedLocationClient
-                .requestLocationUpdates(mLocationRequest, mLocationListener, Looper.myLooper());
+                .requestLocationUpdates(mLocationRequest, mLocationListener, Looper.getMainLooper());
 
         updateUI();
     }
