@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/github/license/SupasinTatiyanupanwong/location-kit-android.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-Location Kit is an abstraction wrapper that encapsulates Google Location Services (GLS), [Lost](https://github.com/lostzen/lost) and HUAWEI Location Kit.
+Location Kit is an abstraction wrapper that encapsulates Google Location Services (GLS), HUAWEI Location Kit and [Lost](https://github.com/lostzen/lost).
 
 ## Architecture
 
@@ -82,7 +82,7 @@ For more information about dependencies, see [Add build dependencies](https://de
 * [Location Kit - HMS Core - HUAWEI Developer](https://developer.huawei.com/consumer/en/hms/huawei-locationkit/)
 * [Lost Location Framework](https://github.com/lostzen/lost)
 
-Several tests have been done with AOSP emulators to test the Lost module and it seems to be working fine.
+Several tests have been done with AOSP emulators to test the Lost module and it seems to be working. But sometimes it delays on having a location fix.
 
 ## License
 
