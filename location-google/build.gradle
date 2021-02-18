@@ -30,7 +30,7 @@ android {
 dependencies {
     api project(':location-core')
 
-    implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-google:1.0.0'
+    implementation 'com.tavorlabs.android.libraries.kits.base:base-google:1.0.1'
 
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 }

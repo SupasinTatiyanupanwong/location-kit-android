@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * EDITED by Tavorlabs on 2021
  */
 
 buildscript {
@@ -32,6 +34,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenLocal()
     }
 }
 
@@ -39,15 +42,15 @@ ext {
     BINTRAY_REPOSITORY = 'android.libraries.kits.location'
     BINTRAY_LICENSES = ["Apache-2.0"]
 
-    POM_GROUP_ID = 'me.tatiyanupanwong.supasin.android.libraries.kits.location'
+    POM_GROUP_ID = 'com.tavorlabs.android.libraries.kits.location'
 
-    POM_URL = 'https://github.com/SupasinTatiyanupanwong/location-kit-android'
-    POM_SCM_URL = 'https://github.com/SupasinTatiyanupanwong/location-kit-android'
-    POM_SCM_CONNECTION = 'https://github.com/SupasinTatiyanupanwong/location-kit-android.git'
+    POM_URL = 'https://github.com/Tavorcl/location-kit-android'
+    POM_SCM_URL = 'https://github.com/Tavorcl/location-kit-android'
+    POM_SCM_CONNECTION = 'https://github.com/Tavorcl/location-kit-android.git'
 
-    POM_DEVELOPER_ID = 'supasintatiyanupanwong'
-    POM_DEVELOPER_NAME = 'Supasin Tatiyanupanwong'
-    POM_DEVELOPER_EMAIL = 'supasin@tatiyanupanwong.me'
+    POM_DEVELOPER_ID = 'tavorcl'
+    POM_DEVELOPER_NAME = 'Gustavo Rivas Lupayante'
+    POM_DEVELOPER_EMAIL = 'gustavo@tavorlabs.com'
 
     POM_LICENCE_NAME = 'Apache License 2.0'
     POM_LICENCE_URL = 'http://www.apache.org/licenses/LICENSE-2.0'

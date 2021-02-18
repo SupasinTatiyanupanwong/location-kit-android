@@ -12,11 +12,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * EDITED by Tavorlabs on 2021
  */
 
 package me.tatiyanupanwong.supasin.android.libraries.kits.location;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +32,8 @@ import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.Locat
  * @since 1.0.0
  */
 abstract class LocationPlatform {
+
+    private static final String TAG = LocationPlatform.class.getSimpleName();
 
     private static LocationPlatform sPlatform;
 
@@ -55,9 +60,14 @@ abstract class LocationPlatform {
             return huawei;
         }
 
+        LocationPlatform lost = LostLocationPlatform.buildIfSupported(context);
+        if (lost != null) {
+            return lost;
+        }
+
         throw new IllegalStateException(
                 "Can't find supported platform, make sure to include one of the next artifacts:"
-                        + " ':location-google', or ':location-huawei'");
+                        + " ':location-google', ':location-lost' or ':location-huawei'");
     }
 
 
@@ -81,9 +91,41 @@ abstract class LocationPlatform {
                                 .getMethod("buildIfSupported", Context.class)
                                 .invoke(null, context)
                 );
-
+                Log.d(TAG, "GoogleLocationPlatform built!");
                 return new GoogleLocationPlatform();
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                //Ignore if unsupported
+                Log.w(TAG, "Cannot build GoogleLocationPlatform. It is unsupported");
+                return null;
+            }
+        }
+    }
+
+    private static final class LostLocationPlatform extends LocationPlatform {
+        private static final String LIBRARY_PACKAGE_NAME =
+                "com.tavorlabs.android.libraries.kits.location.internal.lost";
+
+        private static LocationFactory sFactory;
+
+        @Override
+        @NonNull LocationFactory getFactory() {
+            return sFactory;
+        }
+
+
+        @Nullable static LostLocationPlatform buildIfSupported(@NonNull Context context) {
+            try {
+                sFactory = Objects.requireNonNull(
+                        (LocationFactory) Class
+                                .forName(LIBRARY_PACKAGE_NAME + ".LostLocationFactory")
+                                .getMethod("buildIfSupported", Context.class)
+                                .invoke(null, context)
+                );
+                Log.d(TAG, "LostLocationPlatform built!");
+                return new LostLocationPlatform();
+            } catch (Exception e) {
+                //Ignore if unsupported (for 'lost' this should be really weird)
+                Log.w(TAG, "Cannot build LostLocationPlatform. It is unsupported");
                 return null;
             }
         }
@@ -109,9 +151,11 @@ abstract class LocationPlatform {
                                 .getMethod("buildIfSupported", Context.class)
                                 .invoke(null, context)
                 );
-
+                Log.d(TAG, "HuaweiLocationPlatform built!");
                 return new HuaweiLocationPlatform();
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                //Ignore if unsupported
+                Log.w(TAG, "Cannot build HuaweiLocationPlatform. It is unsupported");
                 return null;
             }
         }

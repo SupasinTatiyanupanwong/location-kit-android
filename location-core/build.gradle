@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * EDITED by Tavorlabs on 2021
  */
 
 apply plugin: 'com.android.library'
@@ -23,12 +25,17 @@ android {
         minSdkVersion 19
         targetSdkVersion 30
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     api 'androidx.annotation:annotation:1.1.0'
 
-    api 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-core:1.0.0'
+    api 'com.tavorlabs.android.libraries.kits.base:base-core:1.0.1'
 }
 
 apply from: 'publish.gradle'

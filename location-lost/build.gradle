@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Supasin Tatiyanupanwong
+ * Copyright 2020 Tavorlabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-rootProject.allprojects {
-    repositories {
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
-}
-
 apply plugin: 'com.android.library'
 
 android {
@@ -31,14 +25,23 @@ android {
 
         consumerProguardFiles 'consumer-rules.pro'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     api project(':location-core')
 
-    implementation 'com.tavorlabs.android.libraries.kits.base:base-huawei:1.0.1'
+    implementation 'com.tavorlabs.android.libraries.kits.base:base-lost:1.0.2'
 
-    implementation 'com.huawei.hms:location:5.0.0.301'
+    //Just using the Google Services Task dependency,
+    //in order to try to keep this simple as possible
+    implementation 'com.google.android.gms:play-services-tasks:17.0.0'
+
+    implementation 'com.mapzen.android:lost:3.0.2'
 }
 
 apply from: 'publish.gradle'
