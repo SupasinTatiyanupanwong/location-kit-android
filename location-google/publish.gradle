@@ -21,7 +21,7 @@ ext {
 
     POM_NAME = 'Location Kit (Google)'
     POM_DESCRIPTION = 'Provides Google Location Services (GLS) integration to Location Kit.'
-    POM_VERSION = '1.0.0'
+    POM_VERSION = '1.1.0'
 }
 
 apply from: rootProject.file("gradle/install.gradle")
