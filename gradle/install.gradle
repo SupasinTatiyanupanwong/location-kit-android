@@ -15,6 +15,7 @@
  */
 
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
 group = POM_GROUP_ID // Maven Group ID for the artifact
 
@@ -49,6 +50,11 @@ install {
                     url POM_SCM_URL
                 }
             }
+        }
+    }
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().getUrl())
         }
     }
 }

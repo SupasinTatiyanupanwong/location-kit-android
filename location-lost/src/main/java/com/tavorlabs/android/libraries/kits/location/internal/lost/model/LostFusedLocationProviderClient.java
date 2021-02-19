@@ -27,6 +27,8 @@ import com.mapzen.android.lost.api.LocationServices;
 import com.mapzen.android.lost.api.LostApiClient;
 import com.tavorlabs.android.libraries.kits.internal.lost.tasks.LostTask;
 
+import java.util.concurrent.CountDownLatch;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
@@ -58,16 +60,20 @@ public final class LostFusedLocationProviderClient implements FusedLocationProvi
 
     private final LostApiClient mClient;
 
+    private final CountDownLatch latch = new CountDownLatch(1);
+
     private final LostApiClient.ConnectionCallbacks connectionCallback = new LostApiClient.ConnectionCallbacks() {
 
         @Override
         public void onConnected() {
-            Log.d(TAG, "Connected!");
+            Log.d(TAG, "Location Kit - Lost FLPC: Connected!");
+            latch.countDown();
         }
 
         @Override
         public void onConnectionSuspended() {
-            Log.d(TAG, "Connection suspended!");
+            Log.d(TAG, "Location Kit - Lost FLPC: Connection suspended!");
+            latch.countDown();
         }
 
     };
@@ -94,11 +100,21 @@ public final class LostFusedLocationProviderClient implements FusedLocationProvi
         }
     }
 
+    private void awaitForClientConnection() throws InterruptedException {
+        /* Had to do the latch stuff because sometimes there is a race condition
+        * when a task is called (the client is not connected).
+        * Perhaps is not the best solution but i didn't figure out other way.
+        * Anyway, it seems to be working :)
+        */
+        latch.await();
+    }
+
     @Override
     @RequiresPermission(anyOf = { ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION })
     public @NonNull Task<Location> getLastLocation() {
         TaskCompletionSource<Location> taskSource = new TaskCompletionSource<>();
         try {
+            awaitForClientConnection();
             taskSource.setResult(mDelegate.getLastLocation(mClient));
         } catch (Exception e) {
             taskSource.setException(e);
@@ -129,6 +145,7 @@ public final class LostFusedLocationProviderClient implements FusedLocationProvi
             final @NonNull LocationCallback callback, @Nullable Looper looper) {
         TaskCompletionSource<Void> taskSource = new TaskCompletionSource<>();
         try {
+            awaitForClientConnection();
             mDelegate.requestLocationUpdates(
                     mClient,
                     LostLocationRequest.unwrap(request),
@@ -150,6 +167,7 @@ public final class LostFusedLocationProviderClient implements FusedLocationProvi
             @NonNull LocationListener listener, @Nullable Looper looper) {
         TaskCompletionSource<Void> taskSource = new TaskCompletionSource<>();
         try {
+            awaitForClientConnection();
             mDelegate.requestLocationUpdates(
                     mClient,
                     LostLocationRequest.unwrap(request),
@@ -169,6 +187,7 @@ public final class LostFusedLocationProviderClient implements FusedLocationProvi
     public @NonNull Task<Void> removeLocationUpdates(@NonNull LocationCallback callback) {
         TaskCompletionSource<Void> taskSource = new TaskCompletionSource<>();
         try {
+            awaitForClientConnection();
             mDelegate.removeLocationUpdates(mClient, mLocationCallbacksHolder.remove(callback));
             taskSource.setResult(null);
         } catch (Exception e) {
@@ -184,6 +203,7 @@ public final class LostFusedLocationProviderClient implements FusedLocationProvi
     public @NonNull Task<Void> removeLocationUpdates(@NonNull LocationListener listener) {
         TaskCompletionSource<Void> taskSource = new TaskCompletionSource<>();
         try {
+            awaitForClientConnection();
             mDelegate.removeLocationUpdates(mClient, mLocationListenersHolder.remove(listener));
             taskSource.setResult(null);
         } catch (Exception e) {

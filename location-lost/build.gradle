@@ -38,10 +38,11 @@ dependencies {
     implementation 'com.tavorlabs.android.libraries.kits.base:base-lost:1.0.2'
 
     //Just using the Google Services Task dependency,
-    //in order to try to keep this simple as possible
+    //in order to try to keep this simple as possible.
+    //Don't know if there is another way...
     implementation 'com.google.android.gms:play-services-tasks:17.0.0'
 
-    implementation 'com.mapzen.android:lost:3.0.2'
+    implementation 'com.mapzen.android:lost:3.0.4'
 }
 
 apply from: 'publish.gradle'

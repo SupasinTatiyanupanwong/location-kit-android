@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * EDITED BY Tavorlabs on 2021
  */
 
 package com.tavorlabs.android.libraries.kits.location.internal.lost;
@@ -26,8 +28,13 @@ import androidx.annotation.RestrictTo;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.LocationFactory;
 import com.tavorlabs.android.libraries.kits.location.internal.lost.model.LostFusedLocationProviderClient;
 import com.tavorlabs.android.libraries.kits.location.internal.lost.model.LostLocationRequest;
+import com.tavorlabs.android.libraries.kits.location.internal.lost.model.LostLocationSettingsRequest;
+import com.tavorlabs.android.libraries.kits.location.internal.lost.model.LostSettingsClient;
+
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.FusedLocationProviderClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsRequest;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY;
 
@@ -47,6 +54,28 @@ public final class LostLocationFactory implements LocationFactory {
     public @NonNull FusedLocationProviderClient getFusedLocationProviderClient(
             @NonNull Activity activity) {
         return new LostFusedLocationProviderClient(activity);
+    }
+
+    @Override
+    public @NonNull LocationSettingsClient getLocationSettingsClient(
+            @NonNull Context context) {
+        return new LostSettingsClient(context);
+    }
+
+    @Override
+    public @NonNull LocationSettingsClient getLocationSettingsClient(
+            @NonNull Activity activity) {
+        return new LostSettingsClient(activity);
+    }
+
+    @Override
+    public @NonNull LocationSettingsRequest newLocationSettingsRequest() {
+        return new LostLocationSettingsRequest();
+    }
+
+    @Override
+    public @NonNull Exception getApiException(@NonNull Exception e) {
+        return e;
     }
 
     @Override

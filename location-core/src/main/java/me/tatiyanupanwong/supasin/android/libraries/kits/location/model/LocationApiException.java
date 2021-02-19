@@ -1,5 +1,5 @@
-/**
- * Copyright 2020 Supasin Tatiyanupanwong
+/*
+ * Copyright 2021 Tavorlabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-tasks.withType(Javadoc) {
-    title = POM_NAME + " " + POM_VERSION + " API"
+package me.tatiyanupanwong.supasin.android.libraries.kits.location.model;
+
+/**
+ * A data class representing a exception from the location settings client.
+ *
+ * @since 1.1.0
+ */
+public interface LocationApiException {
+
+    /**
+     * The status code of the exception. It should a code from the {@link LocationSettingsStatusCodes} class.
+     *
+     * @since 1.1.0
+     */
+    int getStatusCode();
+
 }
-
-ext {
-    POM_ARTIFACT_ID = 'location-core'
-
-    POM_NAME = 'Location Kit (Core)'
-    POM_DESCRIPTION = 'Encapsulates Google Location Services (GLS) and HUAWEI Location Kit.'
-    POM_VERSION = '1.1.0'
-}
-
-apply from: rootProject.file("gradle/install.gradle")
-apply from: rootProject.file("gradle/bintray.gradle")

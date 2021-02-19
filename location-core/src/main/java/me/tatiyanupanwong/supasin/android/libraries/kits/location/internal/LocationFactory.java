@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * EDITED BY Tavorlabs on 2021
  */
 
 package me.tatiyanupanwong.supasin.android.libraries.kits.location.internal;
@@ -24,6 +26,8 @@ import androidx.annotation.RestrictTo;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.FusedLocationProviderClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationRequest;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.location.model.LocationSettingsRequest;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -37,6 +41,14 @@ public interface LocationFactory {
 
     @NonNull FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Activity activity);
 
+    @NonNull LocationSettingsClient getLocationSettingsClient(@NonNull Context context);
+
+    @NonNull LocationSettingsClient getLocationSettingsClient(@NonNull Activity activity);
+
     @NonNull LocationRequest newLocationRequest();
+
+    @NonNull LocationSettingsRequest newLocationSettingsRequest();
+
+    @NonNull Exception getApiException(@NonNull Exception ex);
 
 }

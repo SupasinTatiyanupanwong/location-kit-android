@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         // Update values using data stored in the Bundle.
         updateValuesFromBundle(savedInstanceState);
 
+        //TODO: location kit settings client example
+
         mFusedLocationClient = LocationKit.getFusedLocationProviderClient(this);
 
         // Kick off the process of building the LocationCallback, LocationRequest objects.
@@ -255,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("MissingPermission")
     private void startLocationUpdates() {
         mFusedLocationClient
-                .requestLocationUpdates(mLocationRequest, mLocationListener, Looper.myLooper());
+                .requestLocationUpdates(mLocationRequest, mLocationListener, Looper.getMainLooper());
 
         updateUI();
     }

@@ -21,7 +21,7 @@ ext {
 
     POM_NAME = 'Location Kit (Lost)'
     POM_DESCRIPTION = 'Provides Lost Location Services integration to Location Kit.'
-    POM_VERSION = '1.0.0'
+    POM_VERSION = '1.1.0'
 }
 
 apply from: rootProject.file("gradle/install.gradle")
