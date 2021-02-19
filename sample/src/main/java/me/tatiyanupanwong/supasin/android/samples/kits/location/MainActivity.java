@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         // Update values using data stored in the Bundle.
         updateValuesFromBundle(savedInstanceState);
 
+        //TODO: location kit settings client
+
         mFusedLocationClient = LocationKit.getFusedLocationProviderClient(this);
 
         // Kick off the process of building the LocationCallback, LocationRequest objects.
