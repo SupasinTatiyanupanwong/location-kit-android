@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.tavorlabs.android.libraries.kits.location.internal.lost.model;
 
 import android.app.Activity;
@@ -25,10 +24,7 @@ import com.mapzen.android.lost.api.LocationServices;
 import com.mapzen.android.lost.api.LocationSettingsResult;
 import com.mapzen.android.lost.api.LostApiClient;
 import com.mapzen.android.lost.api.PendingResult;
-import com.mapzen.android.lost.api.Status;
 import com.tavorlabs.android.libraries.kits.internal.lost.tasks.LostTask;
-import com.tavorlabs.android.libraries.kits.location.internal.lost.exception.LostLocationApiException;
-import com.tavorlabs.android.libraries.kits.location.internal.lost.exception.LostLocationResolvableApiException;
 import com.tavorlabs.android.libraries.kits.location.internal.lost.interceptors.LostSettingsResultInterceptor;
 
 import java.util.concurrent.TimeUnit;
@@ -66,13 +62,8 @@ public final class LostSettingsClient implements LocationSettingsClient {
         try {
             PendingResult<LocationSettingsResult> pendingResult = mDelegate.checkLocationSettings(mClient, LostLocationSettingsRequest.unwrap(request));
             LocationSettingsResult result = pendingResult.await(30L, TimeUnit.SECONDS);
-            if (result.getStatus().getStatusCode() == Status.INTERNAL_ERROR) {
-                taskSource.setException(new LostLocationApiException(result));
-            } else if (result.getStatus().getStatusCode() == Status.RESOLUTION_REQUIRED) {
-                taskSource.setException(new LostLocationResolvableApiException(result));
-            } else {
-                taskSource.setResult(result);
-            }
+            //TODO: status code check -- Status.RESOLUTION_REQUIRED has weird issues sometimes, even with the location setting enabled
+            taskSource.setResult(result);
         } catch (Exception e) {
             taskSource.setException(e);
         }
