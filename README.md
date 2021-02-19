@@ -35,7 +35,7 @@ dependencies {
     // To use the HUAWEI Location Kit via Location Kit
     implementation 'com.tavorlabs.android.libraries.kits.location:location-huawei:1.0.0'
 
-    // To use the Lost Location Kit via Location Kit
+    // To use Lost via Location Kit
     implementation 'com.tavorlabs.android.libraries.kits.location:location-lost:1.0.0'
 
 }
