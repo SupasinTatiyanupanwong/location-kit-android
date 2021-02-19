@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.tavorlabs.android.libraries.kits.location.internal.lost.exception;
 
 import android.app.PendingIntent;
