@@ -36,6 +36,7 @@ public interface LocationApiResolvableException extends LocationApiException {
 
     /**
      * The pending intent of the exception. This should be used later so the user can resolve the exception.
+     * Please note that in Lost the resultCode from this pending intent will never be {@code Activity#RESULT_OK}.
      *
      * @since 1.1.0
      */
