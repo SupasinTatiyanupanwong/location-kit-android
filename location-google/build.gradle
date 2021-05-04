@@ -32,7 +32,7 @@ dependencies {
 
     implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-google:1.0.0'
 
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 }
 
 apply from: 'publish.gradle'

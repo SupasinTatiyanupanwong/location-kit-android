@@ -38,7 +38,7 @@ dependencies {
 
     implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-huawei:1.0.0'
 
-    implementation 'com.huawei.hms:location:5.0.0.301'
+    implementation 'com.huawei.hms:location:5.1.0.303'
 }
 
 apply from: 'publish.gradle'
