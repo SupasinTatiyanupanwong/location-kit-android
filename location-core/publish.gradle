@@ -17,14 +17,3 @@
 tasks.withType(Javadoc) {
     title = POM_NAME + " " + POM_VERSION + " API"
 }
-
-ext {
-    POM_ARTIFACT_ID = 'location-core'
-
-    POM_NAME = 'Location Kit (Core)'
-    POM_DESCRIPTION = 'Encapsulates Google Location Services (GLS) and HUAWEI Location Kit.'
-    POM_VERSION = '1.0.0'
-}
-
-apply from: rootProject.file("gradle/install.gradle")
-apply from: rootProject.file("gradle/bintray.gradle")
