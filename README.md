@@ -44,20 +44,9 @@ android {
     }
 }
 
-configurations {
-    google
-    huawei
-
-    googleImplementation.extendsFrom(google)
-    googleCompileOnly.extendsFrom(huawei)
-
-    huaweiImplementation.extendsFrom(huawei)
-    huaweiCompileOnly.extendsFrom(google)
-}
-
 dependencies {
-    google 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-google:1.0.0'
-    huawei 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-huawei:1.0.0'
+    googleImplementation 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-google:1.0.0'
+    huaweiImplementation 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-huawei:1.0.0'
 }
 ```
 

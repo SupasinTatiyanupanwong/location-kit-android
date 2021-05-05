@@ -35,20 +35,9 @@ android {
     }
 }
 
-configurations {
-    google
-    huawei
-
-    googleImplementation.extendsFrom(google)
-    googleCompileOnly.extendsFrom(huawei)
-
-    huaweiImplementation.extendsFrom(huawei)
-    huaweiCompileOnly.extendsFrom(google)
-}
-
 dependencies {
-    google project(':location-google')
-    huawei project(':location-huawei')
+    googleImplementation project(':location-google')
+    huaweiImplementation project(':location-huawei')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.0.0'
