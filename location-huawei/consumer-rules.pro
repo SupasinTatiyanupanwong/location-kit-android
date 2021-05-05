@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
--keep class me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.huawei.HuaweiLocationFactory {
+-keep class dev.supasintatiyanupanwong.libraries.android.kits.location.internal.huawei.HuaweiLocationFactory {
     public static *** buildIfSupported(android.content.Context);
 }
 

@@ -1,7 +1,7 @@
 # Location Kit
 
 [![Download](https://api.bintray.com/packages/supasintatiyanupanwong/android.libraries.kits.location/location-core/images/download.svg)](https://bintray.com/supasintatiyanupanwong/android.libraries.kits.location/location-core/_latestVersion)
-[![javadoc](https://javadoc.io/badge2/me.tatiyanupanwong.supasin.android.libraries.kits.location/location-core/javadoc.svg)](https://javadoc.io/doc/me.tatiyanupanwong.supasin.android.libraries.kits.location/location-core)
+[![javadoc](https://javadoc.io/badge2/dev.supasintatiyanupanwong.libraries.android.kits.location/location-core/javadoc.svg)](https://javadoc.io/doc/dev.supasintatiyanupanwong.libraries.android.kits.location/location-core)
 [![license](https://img.shields.io/github/license/SupasinTatiyanupanwong/location-kit-android.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 Location Kit is an abstraction wrapper that encapsulates Google Location Services (GLS) and HUAWEI Location Kit.
@@ -23,10 +23,10 @@ Add the dependencies for the artifacts you need in the `build.gradle` file for y
 ```groovy
 dependencies {
     // To use the Google Location Services (GLS) via Location Kit
-    implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.location:location-google:1.0.0'
+    implementation 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-google:1.0.0'
 
     // To use the HUAWEI Location Kit via Location Kit
-    implementation 'me.tatiyanupanwong.supasin.android.libraries.kits.location:location-huawei:1.0.0'
+    implementation 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-huawei:1.0.0'
 }
 ```
 
@@ -56,8 +56,8 @@ configurations {
 }
 
 dependencies {
-    google 'me.tatiyanupanwong.supasin.android.libraries.kits.location:location-google:1.0.0'
-    huawei 'me.tatiyanupanwong.supasin.android.libraries.kits.location:location-huawei:1.0.0'
+    google 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-google:1.0.0'
+    huawei 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-huawei:1.0.0'
 }
 ```
 

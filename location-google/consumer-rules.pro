@@ -14,6 +14,6 @@
 # limitations under the License.
 #
 
--keep class me.tatiyanupanwong.supasin.android.libraries.kits.location.internal.google.GoogleLocationFactory {
+-keep class dev.supasintatiyanupanwong.libraries.android.kits.location.internal.google.GoogleLocationFactory {
     public static *** buildIfSupported(android.content.Context);
 }

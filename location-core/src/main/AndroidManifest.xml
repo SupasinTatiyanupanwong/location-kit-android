@@ -17,7 +17,7 @@
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.tatiyanupanwong.supasin.android.libraries.kits.location">
+    package="dev.supasintatiyanupanwong.libraries.android.kits.location">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

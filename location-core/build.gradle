@@ -28,7 +28,7 @@ android {
 dependencies {
     api 'androidx.annotation:annotation:1.2.0'
 
-    api 'me.tatiyanupanwong.supasin.android.libraries.kits.base:base-core:1.0.0'
+    api 'dev.supasintatiyanupanwong.libraries.android.kits.base:base-core:1.0.0'
 }
 
 apply from: 'publish.gradle'

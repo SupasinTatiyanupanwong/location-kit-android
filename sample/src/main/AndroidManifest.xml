@@ -18,7 +18,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="me.tatiyanupanwong.supasin.android.samples.kits.location">
+    package="dev.supasintatiyanupanwong.samples.android.kits.location">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -28,7 +28,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="AllowBackup,MissingApplicationIcon">
 
-        <activity android:name=".MainActivity">
+        <activity android:name="dev.supasintatiyanupanwong.samples.android.kits.location.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

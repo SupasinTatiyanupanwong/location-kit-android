@@ -20,7 +20,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId 'me.tatiyanupanwong.supasin.android.samples.kits.location'
+        applicationId 'dev.supasintatiyanupanwong.samples.android.kits.location'
 
         minSdkVersion 19
         targetSdkVersion 30
