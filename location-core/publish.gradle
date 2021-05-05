@@ -15,5 +15,15 @@
  */
 
 tasks.withType(Javadoc) {
-    title = POM_NAME + " " + POM_VERSION + " API"
+    title = POM_NAME + " " + VERSION_NAME + " API"
 }
+
+ext {
+    POM_ARTIFACT_ID = 'location-core'
+    POM_NAME = 'Location Kit (Core)'
+    POM_DESCRIPTION = 'Encapsulates Google Location Services (GLS) and HUAWEI Location Kit.'
+
+    VERSION_NAME = '1.0.0'
+}
+
+apply plugin: 'com.vanniktech.maven.publish'
