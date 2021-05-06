@@ -55,6 +55,11 @@ abstract class LocationPlatform {
             return huawei;
         }
 
+        LocationPlatform framework = FrameworkLocationPlatform.buildIfSupported();
+        if (framework != null) {
+            return framework;
+        }
+
         throw new IllegalStateException(
                 "Can't find supported platform, make sure to include one of the next artifacts:"
                         + " ':location-google', or ':location-huawei'");
@@ -111,6 +116,34 @@ abstract class LocationPlatform {
                 );
 
                 return new HuaweiLocationPlatform();
+            } catch (Exception ignored) {
+                return null;
+            }
+        }
+    }
+
+    private static final class FrameworkLocationPlatform extends LocationPlatform {
+        private static final String LIBRARY_PACKAGE_NAME =
+                "dev.supasintatiyanupanwong.libraries.android.kits.location.internal.framework";
+
+        private static LocationFactory sFactory;
+
+        @Override
+        @NonNull LocationFactory getFactory() {
+            return sFactory;
+        }
+
+
+        @Nullable static FrameworkLocationPlatform buildIfSupported() {
+            try {
+                sFactory = Objects.requireNonNull(
+                        (LocationFactory) Class
+                                .forName(LIBRARY_PACKAGE_NAME + ".FrameworkLocationFactory")
+                                .getMethod("buildIfSupported")
+                                .invoke(null)
+                );
+
+                return new FrameworkLocationPlatform();
             } catch (Exception ignored) {
                 return null;
             }
