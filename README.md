@@ -1,28 +1,32 @@
 # Location Kit
 
-[![Download](https://api.bintray.com/packages/supasintatiyanupanwong/android.libraries.kits.location/location-core/images/download.svg)](https://bintray.com/supasintatiyanupanwong/android.libraries.kits.location/location-core/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.supasintatiyanupanwong.libraries.android.kits.location/location-core/badge.svg)](https://search.maven.org/search?q=g:dev.supasintatiyanupanwong.libraries.android.kits.location)
 [![javadoc](https://javadoc.io/badge2/dev.supasintatiyanupanwong.libraries.android.kits.location/location-core/javadoc.svg)](https://javadoc.io/doc/dev.supasintatiyanupanwong.libraries.android.kits.location/location-core)
 [![license](https://img.shields.io/github/license/SupasinTatiyanupanwong/location-kit-android.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-Location Kit is an abstraction wrapper that encapsulates Google Location Services (GLS) and HUAWEI Location Kit.
+Location Kit is an abstraction wrapper that encapsulates Google Location Services and HUAWEI Location Kit.
 
 ## Architecture
 
 The library consists of 3 artifacts; `location-core`, `location-google`, and `location-huawei`.
 
-* `location-core` artifact provides an abstraction interface to interact with Location APIs.
-* `location-google` artifact provides the Google Location Services (GLS) integration to Location Kit.
-* `location-huawei` artifact provides the HUAWEI Location Kit integration to Location Kit.
+`location-core` artifact provides an abstraction interface to interact with Location APIs.
+
+`location-google` artifact provides the Google Location Services integration to Location Kit.
+
+`location-huawei` artifact provides the HUAWEI Location Kit integration to Location Kit.
 
 Each artifact transitively depended on its corresponding [base](https://github.com/SupasinTatiyanupanwong/android-kits-base) artifacts.
 
 ## Declaring dependencies
 
+To add a dependency on Location Kit, you must add the Maven Central repository together with the Google Maven repository and/or the Huawei Maven repository to your project.
+
 Add the dependencies for the artifacts you need in the `build.gradle` file for your app or module:
 
 ```groovy
 dependencies {
-    // To use the Google Location Services (GLS) via Location Kit
+    // To use the Google Location Services via Location Kit
     implementation 'dev.supasintatiyanupanwong.libraries.android.kits.location:location-google:1.0.0'
 
     // To use the HUAWEI Location Kit via Location Kit
@@ -36,7 +40,7 @@ However, it is recommended to separate builds between them as next:
 
 ```groovy
 android {
-    ...
+    // ...
     flavorDimensions 'vendor'
     productFlavors {
         google
@@ -58,6 +62,11 @@ For more information about dependencies, see [Add build dependencies](https://de
 
 * [Build location-aware apps - Android Developer](https://developer.android.com/training/location/index.html)
 * [Location Kit - HMS Core - HUAWEI Developer](https://developer.huawei.com/consumer/en/hms/huawei-locationkit/)
+
+## Feedback
+
+Your feedback helps make Location Kit better. Let us know if you discover new issues or have ideas for improving this library.
+Please take a look at the [existing issues](https://github.com/SupasinTatiyanupanwong/location-kit-android/issues) or the [existing discussions](https://github.com/SupasinTatiyanupanwong/location-kit-android/discussions) in this library before you create a new one.
 
 ## License
 

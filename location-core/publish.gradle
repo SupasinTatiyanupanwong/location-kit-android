@@ -21,7 +21,7 @@ tasks.withType(Javadoc) {
 ext {
     POM_ARTIFACT_ID = 'location-core'
     POM_NAME = 'Location Kit (Core)'
-    POM_DESCRIPTION = 'Encapsulates Google Location Services (GLS) and HUAWEI Location Kit.'
+    POM_DESCRIPTION = 'Encapsulates Google Location Services and HUAWEI Location Kit.'
 
     VERSION_NAME = '1.0.0'
 }
